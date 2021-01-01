@@ -1,0 +1,142 @@
+{% extends 'dbms_app/base.html' %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/profiles.css' %}" />
+<link
+rel="stylesheet"
+type="text/css"
+href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<style>
+
+
+  #login_submit {
+    width: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 10px 10px;
+    font-size: 18px;
+    border: 0;
+    background: #333;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+    transition: all in 0.4s;
+  }
+  
+  #login_submit:hover {
+    background: #111;
+    transition: all in 0.4s;
+  }
+
+  .product-info1 {
+  padding: 20px;
+  width: 100%;
+  /* RECENT CHANGES */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  position: relative;
+}
+
+  .product-info2 {
+  padding: 20px;
+  width: 100%;
+  /* RECENT CHANGES */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
+  position: relative;
+}
+
+
+  </style>
+<div class="container">
+    <h1>Customers Referred</h1>
+    
+    <div class="cart">
+      
+      <div class="products">
+          {% for customer in customers%}
+          
+        <div class="product">
+          {% if assemble.productid.title == "Mercedes Benz"%}
+          <img
+            src="https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            alt=""
+          />            
+          {% endif %}
+          {% if assemble.productid.title == "Harley Davidson"%}
+          <img
+            src="https://images.pexels.com/photos/2611686/pexels-photo-2611686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            alt=""
+          />            
+          {% endif %}
+          {% if assemble.productid.title == "Porsche"%}
+          <img
+            src="https://images.hdqwalls.com/download/porsche-911-turbo-s-exclusive-series-2017-sm-1366x768.jpg"
+            alt=""
+          />            
+          {% endif %}
+          {% if assemble.productid.title == "Royal Enfield"%}
+          <img
+            src="https://wallpapercave.com/wp/wp4221540.jpg"
+            alt=""
+          />            
+          {% endif %}
+          {% if assemble.productid.title == "Lamborghini"%}
+          <img
+            src="https://images.pexels.com/photos/2127733/pexels-photo-2127733.jpeg?cs=srgb&dl=pexels-adrian-dorobantu-2127733.jpg&fm=jpg"
+            alt=""
+          />            
+          {% endif %}
+          <div class="product-info1">
+            <h3 class="product-name" >Name</h3>
+            <h4 class="product-address">Address</h4>
+            <p class="product-quantity">Orders Placed </p>
+            <!-- <p class="product-remove">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              <span class="remove">Remove</span>
+            </p> -->
+          </div>
+          <div class="product-info2">
+            <h3 class="product-name" >{{customer.name}}</h3>
+            <h4 class="product-address">{{customer.address}}</h4>
+            <p class="product-quantity"><input value="{{customer.orders}}" name="" /></p>
+            <!-- <p class="product-remove">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              <span class="remove">Remove</span>
+            </p> -->
+          </div>
+          
+        </div> 
+        {% endfor %} 
+      </div>     
+      
+      
+      <div class="cart-total">
+        <h2>Agent Details</h2>
+        <p class="tot-margin">
+          <span>Name</span>
+          <span>{{agent.name}}</span>
+        </p>
+        <p>
+          <span>Address</span>
+          <span>{{agent.address}}</span>
+        </p>
+        <!-- <a href="#">Proceed to Checkout</a> -->
+      </div>
+  </div>
+  </div>
+
+  <div class="logout_container">
+    <div class="logoutwrapper">
+      <div class="loglogin">
+        <a href="{%url 'dbms_app:home' %}"><button type="submit" id="login_submit" style="float: left; margin-left: 160px;">Home</button></a>
+        <a href="{%url 'dbms_app:logout' %}"><button type="submit" id="login_submit" style="float: right; margin-right: 280px;">Logout</button></a>
+      </div>
+    </div>
+  </div>
+{% endblock%}
